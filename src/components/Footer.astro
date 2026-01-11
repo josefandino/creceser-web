@@ -1,0 +1,52 @@
+<footer>
+  <div class="footer-container">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <!-- <img src="/logo.png" alt="Logo" /> -->
+        <h1>CreceSer</h1>
+      </div>
+      <div class="footer-info">
+        <p>
+          © {new Date().getFullYear()} CreceSer. Todos los derechos reservados.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  footer {
+    background-color: var(--color-primary-dark);
+    color: #fff;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .footer-logo img {
+    max-width: 150px;
+  }
+
+  .footer-info p {
+    margin: 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .footer-content {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>

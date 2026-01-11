@@ -1,0 +1,231 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  background: linear-gradient(to right, var(--color-primary), var(--color-primary-dark));
+  position: relative;
+  color: #fefefe;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.logo {
+  flex: 0 0 auto;
+  z-index: 2;
+}
+
+.logo a {
+  color: #fefefe;
+  text-decoration: none;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+.logo a:hover {
+  color: var(--color-secondary);
+}
+
+/* Columna 2: Navegación desktop */
+.desktop-nav {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+  flex: 1;
+  justify-content: center;
+}
+
+.desktop-nav a {
+  text-decoration: none;
+  color: #fefefe;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.desktop-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-secondary);
+  transition: width 0.3s ease;
+}
+
+.desktop-nav a:hover::after,
+.desktop-nav a.active::after {
+  width: 100%;
+}
+
+.desktop-nav a:hover,
+.desktop-nav a.active {
+  color: var(--color-secondary);
+}
+
+/* Columna 3: Login */
+.login-section {
+  flex: 0 0 auto;
+  z-index: 2;
+}
+
+.login-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-secondary-dark);
+  color: #fefefe;
+  text-decoration: none;
+  border-radius: .5rem;
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.login-btn:hover {
+  background: var(--color-tertiary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  color: #fefefe;
+}
+
+/* Menú hamburguesa (móvil) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+
+.hamburger:hover {
+  transform: scale(1.1);
+}
+
+.hamburger span {
+  display: block;
+  width: 28px;
+  height: 3px;
+  background: #fefefe;
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(8px, -8px);
+}
+
+/* Navegación móvil */
+.mobile-nav {
+  display: none;
+}
+
+/* Responsive - Tablets y móviles */
+@media (max-width: 786px) {
+  .header {
+    padding: 1rem 1.5rem;
+  }
+
+  .desktop-nav,
+  .login-section {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: linear-gradient(to bottom, #57925c, #27472c);
+    padding: 80px 1.5rem 2rem;
+    transition: right 0.4s ease;
+    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+  }
+
+  .mobile-nav.open {
+    right: 0;
+  }
+
+  .mobile-nav a {
+    text-decoration: none;
+    color: #fefefe;
+    padding: 1.2rem 1rem;
+    font-weight: 500;
+    font-size: 1.1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .mobile-nav a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    padding-left: 1.5rem;
+    color: var(--color-secondary);
+  }
+
+  .mobile-nav a.active {
+    color: var(--color-secondary);
+    border-left: 4px solid var(--color-secondary);
+  }
+
+  .mobile-nav .mobile-login {
+    margin-top: 1rem;
+    background: var(--color-secondary);
+    color: #27472c;
+    text-align: center;
+    border-radius: 8px;
+    font-weight: 600;
+    border-bottom: none;
+  }
+
+  .mobile-nav .mobile-login:hover {
+    background: #a6d86f;
+    padding-left: 1rem;
+  }
+
+  .logo a {
+    font-size: 1.5rem;
+  }
+}
+
+/* Responsive - Móviles pequeños */
+@media (max-width: 480px) {
+  .header {
+    padding: 1rem;
+  }
+
+  .logo a {
+    font-size: 1.3rem;
+  }
+
+  .mobile-nav {
+    width: 100%;
+    right: -100%;
+  }
+}

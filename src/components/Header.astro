@@ -1,0 +1,66 @@
+---
+import Whatsapp from "./whatsapp.astro";
+
+// Aquí puedes agregar lógica del componente si es necesario
+---
+
+<header class="header">
+  <!-- Columna 1: Logo -->
+  <div class="logo">
+    <a href="/">creceser</a>
+  </div>
+
+  <!-- Columna 2: Menú de navegación -->
+  <nav class="desktop-nav">
+    <a href="/">Inicio</a>
+    <a href="/servicios">Servicios</a>
+    <a href="/nosotros">Nosotros</a>
+  </nav>
+
+  <!-- Columna 3: Login -->
+  <div class="login-section">
+    <div class="login-btn">
+      <Whatsapp
+        phone="51986717150"
+        text="Contacto"
+        class="login-btn"
+        textColor="bg"
+      />
+    </div>
+  </div>
+
+  <!-- Menú hamburguesa para móvil -->
+  <button class="hamburger" aria-label="Menú">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- Navegación móvil -->
+  <nav class="mobile-nav">
+    <a href="/">Inicio</a>
+    <a href="/servicios">Servicios</a>
+    <a href="/nosotros">Nosotros</a>
+    <Whatsapp
+      phone="51986717150"
+      text="Contacto"
+      class="mobile-login"
+      textColor="bg"
+    />
+  </nav>
+</header>
+
+<script>
+  // Script para el menú hamburguesa
+  const hamburger = document.querySelector(".hamburger");
+  const mobileNav = document.querySelector(".mobile-nav");
+
+  hamburger?.addEventListener("click", () => {
+    mobileNav?.classList.toggle("open");
+    hamburger?.classList.toggle("active");
+  });
+</script>
+
+<style>
+  @import "../styles/header.css";
+</style>

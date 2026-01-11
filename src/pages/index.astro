@@ -1,0 +1,107 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Banner from "../components/Banner.astro";
+import About from "../components/About.astro";
+import Testimonial from "../components/Testimonial.astro";
+import UseCases from "../components/UseCases.astro";
+import FAQ from "../components/FAQ.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout>
+  <Header />
+  <Banner
+    title="Tu crecimiento personal al instante 24/7"
+    subtitle="Acompañamos tu desarrollo personal y profesional en cada paso del camino."
+    description=""
+    button="¿Comenzamos?"
+    buttonLink="/login"
+    image="/banner-person.webp"
+  />
+  <About
+    title="¿Qué es CreceSer?"
+    description="CreceSer es una plataforma de desarrollo personal y profesional que brinda el soporte y el acompañamiento necesario para afrontar de manera más positiva y eficaz los retos del día a día."
+    features={[
+      {
+        icon: "/icon-team.webp",
+        title: "Profesionales calificados",
+        description:
+          "Llevamos a cabo una rigurosa selección de profesionales calificados y con experiencia.",
+      },
+      {
+        icon: "/icon-secure.webp",
+        title: "Seguro y privado",
+        description:
+          "Comunicación encriptada y perfil anónimo para que puedas tratar cualquier tema sin miedo a exponer tu identidad o el contenido de tus conversaciones.",
+      },
+      {
+        icon: "/icon-online.webp",
+        title: "Acompañamiento al instante",
+        description:
+          "Contacta siempre que lo necesites, por chat o videollamada, las 24 horas del día y todos los días del año.",
+      },
+    ]}
+  />
+  <Testimonial
+    quote="El éxito de CreceSer es que ha eliminado las barreras que existen hoy en día para ir al psicólogo y ha conseguido que cualquier persona que lo necesite pueda recibir ayuda psicológica inmediata, de calidad y a un precio muy asequible"
+  />
+  <UseCases
+    title="Hemos ayudado a personas con retos personales como el tuyo:"
+    cases={[
+      { emoji: "😔", label: "Depresión" },
+      { emoji: "😰", label: "Ansiedad" },
+      { emoji: "😊", label: "Terapia de pareja" },
+      { emoji: "😌", label: "Autoestima" },
+    ]}
+  />
+  <FAQ
+    title="Preguntas frecuentes"
+    subtitle="Aquí encontrarás respuestas a las preguntas más frecuentes sobre CreceSer."
+    questions={[
+      {
+        question: "¿La terapia online es efectiva?",
+        answer:
+          "Sí, múltiples estudios demuestran que la terapia online es tan efectiva como la presencial. Lo importante es la calidad del profesional y tu compromiso con el proceso.",
+      },
+      {
+        question: "¿Es CreceSer anónimo?",
+        answer:
+          "Completamente. En CreceSer no conocemos ningún dato personal, todo quedará entre el terapeuta y tú. Únicamente utilizaremos el email por motivos de seguridad o para la comunicación de avisos y novedades.",
+      },
+      {
+        question: "¿Puedo elegir el psicólogo con el que realizaré mi sesión?",
+        answer:
+          "Sí, puedes revisar los perfiles de nuestros profesionales y elegir el que mejor se adapte a tus necesidades. También puedes cambiar de profesional cuando lo desees.",
+      },
+      {
+        question: "¿Qué tipo de problemas y patologías tratáis?",
+        answer:
+          "Tratamos una amplia variedad de situaciones: ansiedad, depresión, estrés, problemas de pareja, autoestima, duelo, trastornos alimentarios, adicciones, y muchos otros temas relacionados con el bienestar emocional.",
+      },
+      {
+        question: "¿Cómo puedo empezar una sesión?",
+        answer:
+          "Es muy sencillo: regístrate, elige tu plan, selecciona un profesional y agenda tu primera sesión. Puedes comenzar en menos de 5 minutos.",
+      },
+      {
+        question: "¿Cómo se realiza el pago?",
+        answer:
+          "Aceptamos tarjetas de crédito y débito, así como otros métodos de pago seguros. Todos los pagos están encriptados y son completamente seguros.",
+      },
+      {
+        question: "Quiero cancelar la sesión",
+        answer:
+          "Puedes cancelar tu sesión con al menos 24 horas de anticipación sin ningún cargo. Si cancelas con menos tiempo, se aplicará el cargo correspondiente según nuestros términos y condiciones.",
+      },
+      {
+        question:
+          "¿Los psicólogos de CreceSer cumplen con los requisitos legales?",
+        answer:
+          "Absolutamente. Todos nuestros profesionales están colegiados, cuentan con la formación académica requerida y tienen experiencia comprobada en el campo de la psicología.",
+      },
+    ]}
+  />
+
+  <Footer />
+</Layout>

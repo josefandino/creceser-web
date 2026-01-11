@@ -1,0 +1,50 @@
+---
+enum colors {
+  primary = "var(--color-primary)",
+  secondary = "var(--color-secondary)",
+  tertiary = "var(--color-tertiary)",
+  yellow = "var(--color-yellow)",
+  bg = "var(--color-bg)",
+}
+
+interface Props {
+  phone: string;
+  text?: string;
+  message?: string;
+  class?: string;
+  textColor: keyof typeof colors;
+}
+
+const {
+  phone,
+  text,
+  message = "",
+  class: className = "",
+  textColor = "bg",
+} = Astro.props;
+
+// Limpiar el número de teléfono (quitar espacios, guiones, etc.)
+const cleanPhone = phone.replace(/\D/g, "");
+
+// Construir la URL de WhatsApp
+const whatsappUrl = message
+  ? `https://api.whatsapp.com/send?phone=${cleanPhone}&text=${encodeURIComponent(message)}`
+  : `https://api.whatsapp.com/send?phone=${cleanPhone}`;
+---
+
+<a
+  href={whatsappUrl}
+  target="_blank"
+  rel="noopener noreferrer"
+  class={className}
+  style={{ color: colors[textColor] }}
+>
+  <slot>{text}</slot>
+</a>
+
+<style is:inline>
+  a {
+    list-style: none;
+    text-decoration: none;
+  }
+</style>

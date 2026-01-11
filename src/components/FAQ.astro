@@ -1,0 +1,216 @@
+---
+interface Question {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  questions: Question[];
+}
+
+const { title, subtitle, questions } = Astro.props;
+---
+
+<section class="faq" id="faq">
+  <div class="faq-container">
+    <h2 class="faq-title">{title}</h2>
+    {subtitle && <p class="faq-subtitle">{subtitle}</p>}
+
+    <div class="accordion">
+      {
+        questions.map((item, index) => (
+          <div class="accordion-item" data-index={index}>
+            <button class="accordion-header" aria-expanded="false">
+              <span class="accordion-question">{item.question}</span>
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+              <div class="accordion-body">
+                <p>{item.answer}</p>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  // Funcionalidad del acordeón
+  document.addEventListener("DOMContentLoaded", () => {
+    const headers = document.querySelectorAll(".accordion-header");
+
+    headers.forEach((header) => {
+      header.addEventListener("click", () => {
+        const item = header.parentElement;
+        const content = header.nextElementSibling as HTMLElement;
+        const icon = header.querySelector(".accordion-icon");
+        const isOpen = header.getAttribute("aria-expanded") === "true";
+
+        // Cerrar todos los demás items
+        headers.forEach((otherHeader) => {
+          if (otherHeader !== header) {
+            const otherItem = otherHeader.parentElement;
+            const otherContent = otherHeader.nextElementSibling as HTMLElement;
+            const otherIcon = otherHeader.querySelector(".accordion-icon");
+
+            otherHeader.setAttribute("aria-expanded", "false");
+            otherItem?.classList.remove("active");
+            if (otherContent) {
+              otherContent.style.maxHeight = "0";
+            }
+            if (otherIcon) {
+              otherIcon.textContent = "+";
+            }
+          }
+        });
+
+        // Toggle del item actual
+        if (isOpen) {
+          header.setAttribute("aria-expanded", "false");
+          item?.classList.remove("active");
+          content.style.maxHeight = "0";
+          if (icon) icon.textContent = "+";
+        } else {
+          header.setAttribute("aria-expanded", "true");
+          item?.classList.add("active");
+          content.style.maxHeight = content.scrollHeight + "px";
+          if (icon) icon.textContent = "×";
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .faq {
+    background-color: #ffffff;
+    padding: 5rem 2rem;
+  }
+
+  .faq-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .faq-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .faq-subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    text-align: center;
+    margin-bottom: 3rem;
+    line-height: 1.6;
+  }
+
+  .accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .accordion-item {
+    border-bottom: 1px solid #e0e0e0;
+    transition: all 0.3s ease;
+  }
+
+  .accordion-item:first-child {
+    border-top: 1px solid #e0e0e0;
+  }
+
+  .accordion-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.3s ease;
+  }
+
+  .accordion-header:hover {
+    background-color: #f8f9fa;
+  }
+
+  .accordion-question {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    flex: 1;
+    padding-right: 1rem;
+  }
+
+  .accordion-icon {
+    font-size: 2rem;
+    color: var(--color-primary);
+    font-weight: 300;
+    line-height: 1;
+    transition: transform 0.3s ease;
+    min-width: 30px;
+    text-align: center;
+  }
+
+  .accordion-item.active .accordion-icon {
+    transform: rotate(45deg);
+  }
+
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  .accordion-body {
+    padding: 0 1rem 1.5rem 1rem;
+  }
+
+  .accordion-body p {
+    margin: 0;
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .faq {
+      padding: 3rem 1.5rem;
+    }
+
+    .faq-title {
+      font-size: 2rem;
+    }
+
+    .faq-subtitle {
+      font-size: 1rem;
+    }
+
+    .accordion-question {
+      font-size: 1rem;
+    }
+
+    .accordion-header {
+      padding: 1.2rem 0.5rem;
+    }
+
+    .accordion-body {
+      padding: 0 0.5rem 1.2rem 0.5rem;
+    }
+
+    .accordion-icon {
+      font-size: 1.8rem;
+    }
+  }
+</style>

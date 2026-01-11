@@ -1,0 +1,128 @@
+---
+interface UseCase {
+  emoji: string;
+  label: string;
+}
+
+interface Props {
+  title: string;
+  cases: UseCase[];
+}
+
+const { title, cases } = Astro.props;
+---
+
+<section class="use-cases">
+  <div class="use-cases-container">
+    <h2 class="use-cases-title">{title}</h2>
+
+    <div class="cases-grid">
+      {
+        cases.map((useCase) => (
+          <div class="case-item">
+            <div class="case-icon">
+              <span class="emoji">{useCase.emoji}</span>
+            </div>
+            <p class="case-label">{useCase.label}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .use-cases {
+    background-color: #f0f4f8;
+    padding: 4rem 2rem;
+  }
+
+  .use-cases-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .use-cases-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 3rem;
+    line-height: 1.4;
+    text-wrap: balance;
+  }
+
+  .cases-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+  }
+
+  .case-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .case-icon {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-color: var(--color-yellow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .emoji {
+    font-size: 4rem;
+  }
+
+  .case-label {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--color-primary);
+    margin: 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 968px) {
+    .cases-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.5rem;
+    }
+
+    .use-cases-title {
+      font-size: 1.6rem;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .use-cases {
+      padding: 3rem 1.5rem;
+    }
+
+    .cases-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .use-cases-title {
+      font-size: 1.4rem;
+    }
+
+    .case-icon {
+      width: 120px;
+      height: 120px;
+    }
+
+    .emoji {
+      font-size: 3rem;
+    }
+  }
+</style>
