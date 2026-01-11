@@ -1,5 +1,5 @@
 ---
-import Whatsapp from "./whatsapp.astro";
+import Whatsapp from "./Whatsapp.astro";
 
 // Aquí puedes agregar lógica del componente si es necesario
 ---
@@ -12,9 +12,9 @@ import Whatsapp from "./whatsapp.astro";
 
   <!-- Columna 2: Menú de navegación -->
   <nav class="desktop-nav">
-    <a href="/">Inicio</a>
-    <a href="/servicios">Servicios</a>
-    <a href="/nosotros">Nosotros</a>
+    <a href="#inicio">Inicio</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#nosotros">Nosotros</a>
   </nav>
 
   <!-- Columna 3: Login -->
@@ -38,9 +38,9 @@ import Whatsapp from "./whatsapp.astro";
 
   <!-- Navegación móvil -->
   <nav class="mobile-nav">
-    <a href="/">Inicio</a>
-    <a href="/servicios">Servicios</a>
-    <a href="/nosotros">Nosotros</a>
+    <a href="#inicio" class="mobile-nav-link">Inicio</a>
+    <a href="#servicios" class="mobile-nav-link">Servicios</a>
+    <a href="#nosotros" class="mobile-nav-link">Nosotros</a>
     <Whatsapp
       phone="51986717150"
       text="Contacto"
@@ -54,10 +54,35 @@ import Whatsapp from "./whatsapp.astro";
   // Script para el menú hamburguesa
   const hamburger = document.querySelector(".hamburger");
   const mobileNav = document.querySelector(".mobile-nav");
+  const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+  const header = document.querySelector(".header");
 
   hamburger?.addEventListener("click", () => {
     mobileNav?.classList.toggle("open");
     hamburger?.classList.toggle("active");
+  });
+
+  // Cerrar menú móvil al hacer click en un enlace
+  mobileNavLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileNav?.classList.remove("open");
+      hamburger?.classList.remove("active");
+    });
+  });
+
+  // Efecto de scroll para el header
+  let lastScroll = 0;
+
+  window.addEventListener("scroll", () => {
+    const currentScroll = window.pageYOffset;
+
+    if (currentScroll > 50) {
+      header?.classList.add("scrolled");
+    } else {
+      header?.classList.remove("scrolled");
+    }
+
+    lastScroll = currentScroll;
   });
 </script>
 

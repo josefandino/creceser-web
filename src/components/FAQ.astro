@@ -78,7 +78,7 @@ const { title, subtitle, questions } = Astro.props;
           header.setAttribute("aria-expanded", "true");
           item?.classList.add("active");
           content.style.maxHeight = content.scrollHeight + "px";
-          if (icon) icon.textContent = "×";
+          if (icon) icon.textContent = "−";
         }
       });
     });
@@ -157,13 +157,9 @@ const { title, subtitle, questions } = Astro.props;
     color: var(--color-primary);
     font-weight: 300;
     line-height: 1;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
     min-width: 30px;
     text-align: center;
-  }
-
-  .accordion-item.active .accordion-icon {
-    transform: rotate(45deg);
   }
 
   .accordion-content {

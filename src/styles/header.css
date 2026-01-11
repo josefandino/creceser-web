@@ -4,9 +4,33 @@
   align-items: center;
   padding: 1.5rem 3rem;
   background: linear-gradient(to right, var(--color-primary), var(--color-primary-dark));
-  position: relative;
+  position: fixed;
+  top: 0;
   color: #fefefe;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  left: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+/* Header cuando se hace scroll */
+.header.scrolled {
+  padding: 0.8rem 3rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.header.scrolled .logo a {
+  font-size: 1.5rem;
+}
+
+.header.scrolled .desktop-nav a {
+  font-size: 1rem;
+}
+
+.header.scrolled .login-btn {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
 }
 
 .logo {
@@ -20,7 +44,7 @@
   font-size: 1.8rem;
   font-weight: 700;
   letter-spacing: 1px;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .logo a:hover {
@@ -162,8 +186,8 @@
     right: -100%;
     width: 280px;
     height: 100vh;
-    background: linear-gradient(to bottom, #57925c, #27472c);
-    padding: 80px 1.5rem 2rem;
+    background: linear-gradient(to bottom, var(--color-primary), var(--color-primary-dark));
+    padding: 60px 1.5rem 2rem;
     transition: right 0.4s ease;
     box-shadow: -4px 0 12px rgba(0, 0, 0, 0.3);
     overflow-y: auto;
@@ -226,6 +250,6 @@
 
   .mobile-nav {
     width: 100%;
-    right: -100%;
+    right: -150vw;
   }
 }

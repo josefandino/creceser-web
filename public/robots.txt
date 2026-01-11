@@ -1,0 +1,13 @@
+# Robots.txt para CreceSer
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.creceser.com/sitemap-index.xml
+
+# Crawl-delay para evitar sobrecarga del servidor
+Crawl-delay: 1
+
+# Bloquear acceso a archivos sensibles
+Disallow: /api/
+Disallow: /_astro/

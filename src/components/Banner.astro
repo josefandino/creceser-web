@@ -1,5 +1,6 @@
 ---
-import Whatsapp from "./whatsapp.astro";
+import { Image } from "astro:assets";
+import Whatsapp from "./Whatsapp.astro";
 
 interface Props {
   title: string;
@@ -13,7 +14,7 @@ interface Props {
 const { title, subtitle, description, button, buttonLink, image } = Astro.props;
 ---
 
-<section class="banner">
+<section class="banner" id="inicio">
   <div class="banner-container">
     <div class="banner-content">
       <h1 class="banner-title">{title}</h1>
@@ -32,7 +33,18 @@ const { title, subtitle, description, button, buttonLink, image } = Astro.props;
 
     <div class="banner-image">
       <div class="image-circle">
-        {image && <img src={image} alt={title} />}
+        {
+          image && (
+            <Image
+              src={image}
+              alt={title}
+              width={400}
+              height={400}
+              loading="eager"
+              format="webp"
+            />
+          )
+        }
       </div>
     </div>
   </div>

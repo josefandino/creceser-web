@@ -1,21 +1,98 @@
 ---
-import "../styles/styles.css";
+import "@styles/styles.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string;
+  ogImage?: string;
+}
+
+const {
+  title = "CreceSer - Terapia Psicológica Online en Perú",
+  description = "Conecta con psicólogos profesionales desde la comodidad de tu hogar. Terapia online accesible, confidencial y efectiva para tu bienestar emocional en Perú.",
+  keywords = "terapia online, psicólogos en línea, salud mental, terapia psicológica, bienestar emocional, consulta psicológica online, psicología Perú, ayuda psicológica",
+  ogImage = "/og-image.jpg",
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const siteName = "CreceSer";
 ---
 
 <!doctype html>
 <html lang="es" dir="ltr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="CreceSer" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="Spanish" />
+    <meta name="revisit-after" content="7 days" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content="es_PE" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />
+
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Generator -->
     <meta name="generator" content={Astro.generator} />
-    <title>Crece Ser</title>
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "MedicalBusiness",
+        "name": "CreceSer",
+        "description": "Plataforma de terapia psicológica online en Perú",
+        "url": "https://www.creceser.com",
+        "logo": "https://www.creceser.com/logo.png",
+        "image": "https://www.creceser.com/og-image.jpg",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "PE",
+          "addressLocality": "Lima"
+        },
+        "medicalSpecialty": "Psychology",
+        "availableService": {
+          "@type": "MedicalTherapy",
+          "name": "Terapia Psicológica Online",
+          "description": "Sesiones de terapia psicológica en línea con profesionales certificados"
+        }
+      }
+    </script>
   </head>
   <body>
     <slot />
